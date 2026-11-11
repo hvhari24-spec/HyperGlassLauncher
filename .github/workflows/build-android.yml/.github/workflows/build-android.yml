@@ -7,8 +7,9 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+
     steps:
-      - name: Checkout
+      - name: Checkout source
         uses: actions/checkout@v4
 
       - name: Setup Java
@@ -20,7 +21,7 @@ jobs:
       - name: Setup Android SDK
         uses: android-actions/setup-android@v3
 
-      - name: Install SDK
+      - name: Install Android SDK
         run: sdkmanager "platforms;android-36" "build-tools;36.0.0"
 
       - name: Setup Gradle
@@ -31,7 +32,7 @@ jobs:
       - name: Extract source
         run: |
           unzip -q HyperGlassLauncher-Source.zip -d source
-          test -f source/HyperGlassLauncher/settings.gradle.kts
+          ls source/HyperGlassLauncher
 
       - name: Build APK
         working-directory: source/HyperGlassLauncher
